@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 app.use("/clients", clientRouter)
 
 app.use((req, res, next) => {
-    next(res.send({ code: 404 }))
+    next(res.status(404).send({ message: "Recurso no encontrado" }))
 })
 
 var port = process.env.PORT || '3000';

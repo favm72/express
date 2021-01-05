@@ -1,13 +1,21 @@
 import express from 'express'
+import ClientBL from '../logiclayer/clientBL.js'
 
 let router = express.Router()
 
-router.get('/create', (req, res, next) => {
-	res.status(200).send({ response: true })
+router.get('/list', async (req, res, next) => {		
+	const result = await ClientBL.list()
+	res.status(200).send(result)	
 })
 
-router.post('/create', (req, res, next) => {
-	res.status(200).send({ response: true })
+router.post('/create', async (req, res, next) => {
+	const result = await ClientBL.create(req.body)
+	res.status(200).send(result)	
+})
+
+router.get('/kpis', async (req, res, next) => {
+	const result = await ClientBL.kpis()
+	res.status(200).send(result)	
 })
 
 export default router;
